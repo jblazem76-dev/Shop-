@@ -25,13 +25,13 @@ export default function HomePage() {
   const otherProducts = products.filter((p) => p.slug !== "phosphite-blue").slice(0, 3);
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-16 sm:space-y-24">
       <section className="space-y-8">
         <div className="flex flex-col gap-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate">
             Central Turf Agronomy
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight text-ink md:text-6xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-6xl">
             Supplement Photosynthesis.
           </h1>
           <p className="max-w-2xl text-lg text-slate">
