@@ -4,6 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
+packages = ["unzip"]
 
 [workflows]
 runButton = "Project"
@@ -35,4 +36,5 @@ externalPort = 80
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["node", "index.js"]
+run = ["npm", "start"]
+build = ["npm", "run", "build"]
