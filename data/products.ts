@@ -36,8 +36,7 @@ export const products: Product[] = [
       "Warm Season: Apply 3 to 8 ounces per 1000 square feet and repeat every 7-14 days during times of stress",
       "Fairways, Sports Turf, Sod & Lawns: Apply 1.5 to 6 ounces per 1000 sqft in a minimum of 50 gallons of water per acre"
     ],
-    idealFor: ["Golf courses", "Sports turf", "Sod farms", "Lawns"],
-    featured: true
+    idealFor: ["Golf courses", "Sports turf", "Sod farms", "Lawns"]
   },
   {
     slug: "c-color-n",
@@ -216,7 +215,8 @@ export const products: Product[] = [
       "Apply 3.0-6.0 ounces per 1000 square feet with sufficient water for coverage every 14-28 days"
     ],
     idealFor: ["Warm season grasses", "Cool season grasses", "Sod farms"],
-    choBadge: true
+    choBadge: true,
+    featured: true
   },
   {
     slug: "push-hold-plus",

@@ -21,8 +21,8 @@ const steps = [
 ];
 
 export default function HomePage() {
-  const featuredProduct = products.find((p) => p.slug === "phosphite-blue");
-  const otherProducts = products.filter((p) => p.slug !== "phosphite-blue").slice(0, 3);
+  const featuredProduct = products.find((p) => p.featured);
+  const otherProducts = products.filter((p) => !p.featured).slice(0, 3);
 
   return (
     <div className="space-y-16 sm:space-y-24">
