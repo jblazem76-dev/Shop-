@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export default function SciencePage() {
   return (
     <div className="space-y-12">
       <div className="space-y-4">
-        <h1 className="text-4xl font-semibold text-ink">Science</h1>
+        <h1 className="text-3xl font-semibold text-ink sm:text-4xl">Science</h1>
         <p className="max-w-2xl text-slate">
           Clear, practical science. CTA focuses on what improves plant energy and stability without
           adding noise to your decision-making.
@@ -10,7 +12,16 @@ export default function SciencePage() {
       </div>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-ink">The Carbon Advantage (CHO)</h2>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <h2 className="text-2xl font-semibold text-ink">The Carbon Advantage (CHO)</h2>
+          <Image
+            src="/cho-badge.png"
+            alt="Carbon Enhanced Formulations"
+            width={80}
+            height={80}
+            className="w-16 h-16 sm:w-20 sm:h-20"
+          />
+        </div>
         <p className="max-w-3xl text-slate">
           Carbon, hydrogen, and oxygen are the building blocks of turf energy. When these elements are
           supported through photosynthesis, the plant has more energy to allocate to roots, density,
