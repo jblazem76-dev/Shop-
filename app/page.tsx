@@ -21,8 +21,8 @@ const steps = [
 ];
 
 export default function HomePage() {
-  const featuredProduct = products.find((p) => p.slug === "phosphate-blue");
-  const otherProducts = products.filter((p) => p.slug !== "phosphate-blue").slice(0, 3);
+  const featuredProduct = products.find((p) => p.slug === "phosphite-blue");
+  const otherProducts = products.filter((p) => p.slug !== "phosphite-blue").slice(0, 3);
 
   return (
     <div className="space-y-24">
@@ -82,9 +82,9 @@ export default function HomePage() {
               </div>
             </div>
             <div className="rounded-3xl border border-mist p-8">
-              <h3 className="text-xl font-semibold text-ink">How It Works</h3>
+              <h3 className="text-xl font-semibold text-ink">Key Features</h3>
               <ul className="mt-4 space-y-3 text-sm text-slate">
-                {featuredProduct.howItWorks.map((item) => (
+                {featuredProduct.keyFeatures.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
               </ul>

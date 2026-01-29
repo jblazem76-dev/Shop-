@@ -40,26 +40,34 @@ export default function ProductPage({ params }: ProductPageProps) {
             <p className="mt-3 text-slate">{product.description}</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-ink">How it works</h3>
+            <h3 className="text-xl font-semibold text-ink">Key Features</h3>
             <ul className="mt-3 space-y-2 text-sm text-slate">
-              {product.howItWorks.map((item) => (
+              {product.keyFeatures.map((item) => (
                 <li key={item}>• {item}</li>
               ))}
             </ul>
           </div>
-          <div>
-            <h3 className="text-xl font-semibold text-ink">Application summary</h3>
-            <p className="mt-3 text-sm text-slate">{product.applicationSummary}</p>
+          {product.applicationRates && product.applicationRates.length > 0 && (
+            <div>
+              <h3 className="text-xl font-semibold text-ink">Application Rates</h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate">
+                {product.applicationRates.map((item) => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        {product.idealFor && product.idealFor.length > 0 && (
+          <div className="rounded-3xl bg-mist p-6">
+            <h3 className="text-xl font-semibold text-ink">Who it&apos;s for</h3>
+            <ul className="mt-4 space-y-2 text-sm text-slate">
+              {product.idealFor.map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+            </ul>
           </div>
-        </div>
-        <div className="rounded-3xl bg-mist p-6">
-          <h3 className="text-xl font-semibold text-ink">Who it&apos;s for</h3>
-          <ul className="mt-4 space-y-2 text-sm text-slate">
-            {product.idealFor.map((item) => (
-              <li key={item}>• {item}</li>
-            ))}
-          </ul>
-        </div>
+        )}
       </section>
     </div>
   );

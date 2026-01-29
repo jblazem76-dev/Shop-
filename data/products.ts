@@ -1,113 +1,247 @@
-export type Product = {
+export interface Product {
   slug: string;
   name: string;
+  formula?: string;
   category: string;
+  tagline: string;
   primaryBenefit: string;
   description: string;
-  howItWorks: string[];
-  applicationSummary: string;
-  idealFor: string[];
+  keyFeatures: string[];
+  principleAgents?: string[];
+  applicationRates?: string[];
+  idealFor?: string[];
   featured?: boolean;
-};
+}
 
 export const products: Product[] = [
   {
-    slug: "phosphate-blue",
-    name: "Phosphate Blue",
-    category: "Foliar Nutrition",
-    primaryBenefit: "Enhances root development and energy transfer for stronger, more resilient turf.",
-    description: "Phosphate Blue is CTA's flagship phosphorus solution, engineered to support rapid root establishment and sustained energy production. Its unique blue-tinted formulation provides visual confirmation of coverage while delivering highly available phosphorus directly to the plant.",
-    howItWorks: [
-      "Delivers phosphorus in a plant-available form that bypasses soil tie-up.",
-      "Supports ATP production for cellular energy transfer.",
-      "Promotes robust root growth during establishment and recovery phases.",
-      "Blue tracer dye ensures uniform application and reduces overlap."
+    slug: "phosphite-blue",
+    name: "Phosphite Blue",
+    category: "Foliar Treatment",
+    tagline: "Boost Stress Tolerance",
+    primaryBenefit: "Helps plants withstand heat, drought, and other stressors when applied during vulnerable periods",
+    description: "Phosphite Blue is a highly concentrated, phosphite-based nutrient solution formulated for foliar use in turfgrass. Its unique blend of mono and di-potassium salts of phosphorous acid is rapidly absorbed through leaves or roots, swiftly correcting nutrient deficiencies while strengthening root systems and foliage. With 26% soluble potash (K2O), Phosphite Blue not only provides the essential potassium needed for robust growth and vigor but also helps plants withstand stress conditions—delivering lush, vibrant turf all season long.",
+    keyFeatures: [
+      "Withstand heat, drought, and other stressors when applied during vulnerable periods",
+      "Foliar or root uptake ensures faster results and optimal nutrient delivery",
+      "Aids in cellular division / strength with highly soluble potassium"
     ],
-    applicationSummary: "Apply 2-4 oz per 1,000 sq ft every 14-21 days during active growth. Compatible with most tank mixes.",
-    idealFor: ["Golf courses", "Sports turf", "Sod farms", "New installations"],
+    principleAgents: [
+      "Soluble Potash (K2O): 26.0%",
+      "Derived from: Potassium phosphite"
+    ],
+    applicationRates: [
+      "Cool Season: Apply 1.5 to 6 ounces per 1000 square feet and repeat every 7-14 days during times of stress",
+      "Warm Season: Apply 3 to 8 ounces per 1000 square feet and repeat every 7-14 days during times of stress",
+      "Fairways, Sports Turf, Sod & Lawns: Apply 1.5 to 6 ounces per 1000 sqft in a minimum of 50 gallons of water per acre"
+    ],
+    idealFor: ["Golf courses", "Sports turf", "Sod farms", "Lawns"],
     featured: true
   },
   {
-    slug: "carbon-boost",
-    name: "Carbon Boost",
-    category: "Soil Conditioning",
-    primaryBenefit: "Increases soil carbon levels to improve microbial activity and nutrient cycling.",
-    description: "Carbon Boost delivers readily available carbon sources that feed beneficial soil microbes. A healthy microbial population breaks down organic matter faster and makes nutrients more accessible to plant roots.",
-    howItWorks: [
-      "Provides simple and complex carbon chains for diverse microbial populations.",
-      "Enhances cation exchange capacity over time.",
-      "Improves soil structure and water infiltration.",
-      "Reduces thatch accumulation through accelerated decomposition."
+    slug: "c-color-n",
+    name: "C-Color-N",
+    formula: "20-2-5",
+    category: "Color Enhancer",
+    tagline: "For Resilient & Vibrant Color",
+    primaryBenefit: "Micronutrient enhanced nitrogen formulation for superior color and quick recovery from wear",
+    description: "C-Color-N is a micronutrient-enhanced nitrogen formulation designed to deliver superior color and resilience. This advanced blend helps turf recover quickly from traffic, mechanical, and player wear, ensuring a lush and vibrant appearance. With 60% slow-release nitrogen, our product avoids growth surges, promoting consistent and healthy growth for optimal turf performance.",
+    keyFeatures: [
+      "Micronutrient enhanced nitrogen formulation for superior color",
+      "Recover from traffic, mechanical, and player wear",
+      "60% slow release to avoid growth surges"
     ],
-    applicationSummary: "Apply 4-6 oz per 1,000 sq ft monthly. Best results when soil temperatures exceed 55°F.",
-    idealFor: ["High-traffic areas", "Compacted soils", "Renovation projects"]
+    principleAgents: [
+      "Total Nitrogen (N): 20.0%",
+      "Available Phosphate (P2O5): 2.0%",
+      "Soluble Potash (K2O): 5.0%",
+      "Boron (B): 0.02%",
+      "Iron (Fe): 0.20%",
+      "Molybdenum (Mo): 0.0005%"
+    ],
+    applicationRates: [
+      "Apply 1.5 – 9.0 ounces per 1000 square feet in sufficient water for coverage"
+    ],
+    idealFor: ["Golf courses", "Recreational surfaces", "College & high school fields", "Commercial landscaping"]
   },
   {
-    slug: "foliar-iron-plus",
-    name: "Foliar Iron Plus",
-    category: "Foliar Nutrition",
-    primaryBenefit: "Delivers deep green color without excessive growth surge.",
-    description: "Foliar Iron Plus combines chelated iron with micronutrients for rapid color response. The balanced formula promotes chlorophyll production without pushing unwanted vertical growth.",
-    howItWorks: [
-      "Chelated iron penetrates leaf tissue quickly for fast visual response.",
-      "Manganese and zinc support enzyme function and stress tolerance.",
-      "Low nitrogen content prevents flush growth.",
-      "Stays in solution for consistent spray performance."
+    slug: "c-starter",
+    name: "C-Starter",
+    formula: "3-18-18",
+    category: "Growth & Rooting",
+    tagline: "Highly Soluble P&K",
+    primaryBenefit: "Initiate rooting with highly soluble phosphate, particularly beneficial under cool soil temperatures",
+    description: "C-Starter 3-18-18 is a high availability foliar nutrient formulation of N-P-K with a low salt index. Designed to supplement standard fertility programs and rapidly correct or prevent nutritional deficiencies. C-Starter 3-18-18 increases plant growth, health, and root production. The phosphate in C-Starter 3-18-18 is all in the plant-available ortho phosphate form allowing for rapid uptake and utilization. This distinctive formulation enhances nutrient availability and allows for enhanced tank mix compatibility in hard water situations.",
+    keyFeatures: [
+      "Initiate rooting with highly soluble phosphate",
+      "Particularly beneficial under cool soil temperatures",
+      "Aids in cellular division / strength with highly soluble potassium"
     ],
-    applicationSummary: "Apply 2-3 oz per 1,000 sq ft every 7-14 days. Avoid application during heat stress.",
-    idealFor: ["Golf greens", "Tees", "Fairways", "High-visibility areas"]
+    principleAgents: [
+      "Total Nitrogen (N): 3.0%",
+      "Available Phosphate (P2O5): 18.0%",
+      "Soluble Potash (K2O): 18.0%"
+    ],
+    applicationRates: [
+      "Apply 1.5 – 9.0 ounces per 1000 square feet in sufficient water for coverage"
+    ],
+    idealFor: ["Turfgrass", "Sod farms", "New installations"]
   },
   {
-    slug: "moisture-manager",
-    name: "Moisture Manager",
-    category: "Soil Moisture",
-    primaryBenefit: "Evens out soil moisture distribution to reduce wet and dry spots.",
-    description: "Moisture Manager is a soil surfactant that improves water movement through the root zone. It helps sandy soils retain moisture longer and clay soils drain more efficiently.",
-    howItWorks: [
-      "Reduces surface tension so water penetrates hydrophobic layers.",
-      "Redistributes moisture laterally for more uniform root zone conditions.",
-      "Lasts 4-6 weeks per application depending on irrigation frequency.",
-      "Non-phytotoxic at labeled rates."
+    slug: "c-strength-micros",
+    name: "C-Strength-Micros",
+    category: "Micronutrients",
+    tagline: "Sugar Based Micros",
+    primaryBenefit: "Excellent chlorophyll production to maximize photosynthesis and maintain dark green color without excessive top growth",
+    description: "C-Strength-Micros is a liquid formulation of glucoheptonated (sugar-based) micronutrients commonly found to be low or deficient in turfgrass. C-Strength-Micros is formulated to deliver maximum nutrient absorption to prevent and cure micronutrient deficiencies and maximize color, photosynthetic activity and plant strength.",
+    keyFeatures: [
+      "Sugar based (glucoheptonate) micros for rapid foliar absorption",
+      "Excellent chlorophyll production to maximize photosynthesis (rooting)",
+      "Maintain dark green color without excessive top growth"
     ],
-    applicationSummary: "Apply 4-8 oz per 1,000 sq ft. Water in within 24 hours of application.",
-    idealFor: ["Localized dry spots", "Sandy soils", "High-cut roughs", "Slopes"]
+    principleAgents: [
+      "Magnesium (Mg): 1.0%",
+      "Boron (B): 0.02%",
+      "Iron (Fe): 3.0%",
+      "Manganese (Mn): 4.0%",
+      "Zinc (Zn): 0.02%"
+    ],
+    applicationRates: [
+      "Maintenance: Apply 3 to 6 ounces per 1000 square feet as needed",
+      "For deficiencies: Apply 8 to 12 ounces per 1000 sq feet",
+      "Applications can be made every 7 to 14 days as needed for desired results"
+    ],
+    idealFor: ["Golf courses", "Sports turf", "Premium lawns"]
   },
   {
-    slug: "root-zone-enhancer",
-    name: "Root Zone Enhancer",
-    category: "Soil Conditioning",
-    primaryBenefit: "Stimulates deeper root growth for improved drought tolerance.",
-    description: "Root Zone Enhancer combines humic acids with kelp extracts to create an environment where roots thrive. Deeper roots access water and nutrients that shallow-rooted turf cannot reach.",
-    howItWorks: [
-      "Humic acids chelate nutrients and improve their uptake efficiency.",
-      "Kelp-derived cytokinins promote cell division in root tips.",
-      "Improves soil aggregation around the root zone.",
-      "Enhances stress recovery after aerification or heavy traffic."
+    slug: "c-roots-aminos",
+    name: "C-Roots-Aminos",
+    formula: "6-2-3",
+    category: "Root Development",
+    tagline: "Drive Roots",
+    primaryBenefit: "Enhance photosynthesis and glucose production to build deeper roots and mitigate stress",
+    description: "C-Roots-Aminos is a 6-2-3 supplemental fertilizer enhanced with secondary metabolites and a proprietary bio stimulant package. C-Roots-Aminos 6-2-3 is designed to enhance stress resistance, and to increase and maintain roots in turfgrass.",
+    keyFeatures: [
+      "Enhance Photosynthesis and glucose production (Roots)",
+      "Build Deeper Roots in Spring and Fall",
+      "Maintain Roots in Summer",
+      "Mitigate all forms of Stress"
     ],
-    applicationSummary: "Apply 3-4 oz per 1,000 sq ft every 3-4 weeks during the growing season.",
-    idealFor: ["Drought-prone sites", "Shallow root zones", "Post-aerification recovery"]
+    principleAgents: [
+      "Total Nitrogen (N): 6.0%",
+      "Available Phosphate (P2O): 2.0%",
+      "Soluble Potash (K2O): 3.0%"
+    ],
+    applicationRates: [
+      "Initial application: Apply as a foliar spray at 6.0-9.0 ounces per 1000 square feet",
+      "Maintenance applications: Apply as a foliar spray at 3.0-6.0 ounces per 1000 square feet every 10-14 days",
+      "Soil applications: Apply as a soil spray at 9.0-12.0 ounces per 1000 square feet every 15-30 days"
+    ],
+    idealFor: ["Golf courses", "Sports turf", "Sod farms"]
   },
   {
-    slug: "stress-guard",
-    name: "Stress Guard",
+    slug: "c-energy-calcium",
+    name: "C-Energy-Calcium",
     category: "Plant Health",
-    primaryBenefit: "Protects turf from heat, drought, and traffic stress.",
-    description: "Stress Guard is a preventive treatment that primes the plant's natural defense systems. Applied before stress events, it helps turf maintain function when conditions turn challenging.",
-    howItWorks: [
-      "Triggers systemic acquired resistance pathways.",
-      "Stabilizes cell membranes during temperature extremes.",
-      "Maintains photosynthetic efficiency under moisture deficit.",
-      "Reduces recovery time after stress events."
+    tagline: "Build Cell Walls and Lower Heat Stress",
+    primaryBenefit: "Lower respiration stress, build thick cell walls, and increase wear tolerance",
+    description: "C-Energy-Calcium is a plant available liquid foliar nutritional formulation designed to correct or prevent deficiencies of calcium in turfgrass and ornamentals. C-Energy-Calcium is dual complexed and engineered for maximum tank mix compatibility and plant absorption. C-Energy-Calcium is especially beneficial during periods of rapid growth and heat-stress.",
+    keyFeatures: [
+      "Lower Respiration Stress",
+      "Initiate Rooting in Spring and Fall",
+      "Maintain Roots in Summer",
+      "Build Thick Cell Walls",
+      "Increase Wear Tolerance"
     ],
-    applicationSummary: "Apply 2-4 oz per 1,000 sq ft 7-10 days before anticipated stress. Repeat every 14-21 days during stress periods.",
-    idealFor: ["Summer stress management", "Tournament prep", "High-traffic events"]
+    principleAgents: [
+      "Calcium (Ca): 10.0%",
+      "Derived from: Calcium glucoheptonate"
+    ],
+    applicationRates: [
+      "Greens and Tees: Apply 3 to 8 ounces per 1000 square feet, in enough water for thorough coverage",
+      "Fairways: Apply 1.5-8.0 ounces per 1000 square feet, in sufficient water for coverage"
+    ],
+    idealFor: ["Golf courses", "Sports turf", "Ornamentals"]
+  },
+  {
+    slug: "humic",
+    name: "Humic",
+    category: "Soil Health",
+    tagline: "Highly Concentrated Carbon",
+    primaryBenefit: "Feed microbes with high carbon humic and fulvic acids to improve soil nutrient availability",
+    description: "Humic is useful on all soil types, giving added nutrient holding capacity in sandy soils, and opening pore space in heavy / clay soils, due to the strong negative electrical charge associated with Humic acids. The high carbon content in Humic is also extremely beneficial in feeding microbes, which further aids in nutrient cycling and oxygen production for increasing photosynthetic activity.",
+    keyFeatures: [
+      "Feed Microbes with High Carbon Humic and Fulvic Acids",
+      "Increase Beneficial Microbial Activity",
+      "Improve Soil Nutrient Availability and Cycling",
+      "Improve Oxygen Evolution to Improve Photosynthesis",
+      "Increase Nutrient Holding Capacity in Sandy Soils",
+      "Increase Pore Space in Native/Clay Soils"
+    ],
+    principleAgents: [
+      "Humic Acid: 20.0%",
+      "Derived from: Leonardite Ore"
+    ],
+    applicationRates: [
+      "Foliar Application: Mix 0.74-2.2 ounces per 1000 square feet in spray solution",
+      "Turfgrass: Apply 1.5 to 3.0 ounces per 1,000 square feet monthly. Water in for best results"
+    ],
+    idealFor: ["All soil types", "Sandy soils", "Clay soils", "Golf courses"]
+  },
+  {
+    slug: "c-soils",
+    name: "C-Soils",
+    formula: "1-0-2",
+    category: "Soil Conditioning",
+    tagline: "Total Soil Conditioner",
+    primaryBenefit: "Enhance microbial proliferation and build stronger roots with improved nutrient cycling",
+    description: "C-Soils-1-0-2 is enhanced with Amino Acids. Bio-Synergy containing carbon, plant sugars, fulvic, Humic acid, and silica. This formula not only nourishes the turf but also improves soil health, ensuring a lush, durable, and visually appealing surface for optimal performance.",
+    keyFeatures: [
+      "Enhance Microbial Proliferation",
+      "Increase Nutrient Cycling / Availability",
+      "Increase Oxygen Evolution for Photosynthesis",
+      "Build Stronger Roots"
+    ],
+    principleAgents: [
+      "Nitrogen (N): 1.0%",
+      "Soluble Potash (K): 2.0%",
+      "Derived from: Plant Sugars, Soy Protein Hydrolysate, Fulvic acid, Humic acid"
+    ],
+    applicationRates: [
+      "Apply 3.0-6.0 ounces per 1000 square feet with sufficient water for coverage every 14-28 days"
+    ],
+    idealFor: ["Warm season grasses", "Cool season grasses", "Sod farms"]
+  },
+  {
+    slug: "push-hold-plus",
+    name: "Push-Hold+",
+    category: "Wetting Agent",
+    tagline: "Your Best Secret Agent",
+    primaryBenefit: "Combination wetting agent to push holding surfactants deeper into the soil profile",
+    description: "Push-Hold+ is a 1/3 Penetrant, 2/3 Retention wetting agent to manage soil moisture and reduce LDS. The multi-chemistry design helps mitigate hydrophobic soils, ensure uniform hydration characteristics, and facilitate rapid rewetting. Push-Hold+ is designed for superior soil moisture management.",
+    keyFeatures: [
+      "Combination Wetting Agent to 'Push' the 'Holding' Surfactants Deeper into the Soil Profile",
+      "Feed Microbes Carbon with Humic Acid Addition",
+      "Add Holding Capacity to Sandy Soils",
+      "Open Pore Space in Clay/Native Soils",
+      "Increase Nutrient Availability and Cycling",
+      "Increase Oxygen Evolution for Improved Photosynthesis"
+    ],
+    applicationRates: [
+      "Apply as directed for soil moisture management"
+    ],
+    idealFor: ["Golf courses", "Sports turf", "Hydrophobic soils"]
   }
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
+  return products.find((product) => product.slug === slug);
 }
 
 export function getFeaturedProducts(): Product[] {
-  return products.filter((p) => p.featured);
+  return products.filter((product) => product.featured);
+}
+
+export function getProductsByCategory(category: string): Product[] {
+  return products.filter((product) => product.category === category);
 }

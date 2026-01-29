@@ -13,7 +13,7 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 ```
 /
 ├── app/                    # Next.js App Router pages
-│   ├── page.tsx           # Home page (features Phosphate Blue)
+│   ├── page.tsx           # Home page (features Phosphite Blue)
 │   ├── layout.tsx         # Root layout
 │   ├── globals.css        # Global styles
 │   ├── contact/           # Contact page with contact info
@@ -29,7 +29,7 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 │   ├── ProductGrid.tsx    # Products grid layout
 │   └── ProgramCard.tsx    # Program display card
 ├── data/                  # Static data
-│   ├── products.ts        # Products catalog (6 products)
+│   ├── products.ts        # Products catalog (9 products)
 │   └── programs.ts        # Programs data
 ├── public/                # Static assets
 │   └── logo.png           # CTA Logo (green)
@@ -46,14 +46,17 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 
 ## Key Features
 - Apple-style clean, modern design
-- Responsive layout
-- Product catalog with 6 products:
-  - **Phosphate Blue** (Featured) - Foliar Nutrition
-  - Carbon Boost - Soil Conditioning
-  - Foliar Iron Plus - Foliar Nutrition
-  - Moisture Manager - Soil Moisture
-  - Root Zone Enhancer - Soil Conditioning
-  - Stress Guard - Plant Health
+- Responsive layout with category filtering
+- Product catalog with 9 products from CTA catalog:
+  - **Phosphite Blue** (Featured) - Foliar Treatment - Boost Stress Tolerance
+  - **C-Color-N 20-2-5** - Color Enhancer - For Resilient & Vibrant Color
+  - **C-Starter 3-18-18** - Growth & Rooting - Highly Soluble P&K
+  - **C-Strength-Micros** - Micronutrients - Sugar Based Micros
+  - **C-Roots-Aminos 6-2-3** - Root Development - Drive Roots
+  - **C-Energy-Calcium** - Plant Health - Build Cell Walls and Lower Heat Stress
+  - **Humic** - Soil Health - Highly Concentrated Carbon
+  - **C-Soils 1-0-2** - Soil Conditioning - Total Soil Conditioner
+  - **Push-Hold+** - Wetting Agent - Your Best Secret Agent
 - Programs and methodology information
 - Science-based content sections
 - Contact page with full contact information
@@ -69,7 +72,7 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 - Cache headers configured for development
 
 ## Recent Changes
-- Added CTA green logo site-wide (Header, Footer, Contact page)
-- Created full product catalog with Phosphate Blue as featured product
-- Updated contact page with full contact information
-- Fixed grammatical issues and improved content consistency
+- Updated product catalog with 9 products from CTA catalog PDF
+- Added detailed product information including key features, principle agents, and application rates
+- Added category filtering on products page
+- Phosphite Blue set as featured product on home page
