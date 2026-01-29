@@ -65,10 +65,11 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 - Contact page with full contact information
 
 ## Contact Information
-- Phone: (555) 123-4567
-- Email: info@centralturf.com
-- Address: 123 Turf Science Drive, Greenville, TX 75401
-- Hours: Monday - Friday: 8:00 AM - 5:00 PM CST
+- Contact: Brent Smith
+- Phone: 563-210-1616
+- Email: ctagronomy@gmail.com
+- Website: www.ctagronomy.com
+- Address: 215 E 2nd. Street, Dewitt, IA 52742
 
 ## Configuration
 - Server runs on 0.0.0.0:5000

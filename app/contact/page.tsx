@@ -21,7 +21,7 @@ export default function ContactPage() {
             <li>• Coordinate delivery timing across multiple sites.</li>
           </ul>
           <div className="mt-8">
-            <CTAButton href="mailto:info@centralturf.com">
+            <CTAButton href="mailto:ctagronomy@gmail.com">
               Request a Quote
             </CTAButton>
           </div>
@@ -34,20 +34,24 @@ export default function ContactPage() {
           </div>
           <div className="space-y-4 text-slate">
             <div>
+              <p className="font-semibold text-ink">Contact</p>
+              <p>Brent Smith</p>
+            </div>
+            <div>
               <p className="font-semibold text-ink">Phone</p>
-              <p>(555) 123-4567</p>
+              <p>563-210-1616</p>
             </div>
             <div>
               <p className="font-semibold text-ink">Email</p>
-              <p>info@centralturf.com</p>
+              <p>ctagronomy@gmail.com</p>
+            </div>
+            <div>
+              <p className="font-semibold text-ink">Website</p>
+              <p>www.ctagronomy.com</p>
             </div>
             <div>
               <p className="font-semibold text-ink">Address</p>
-              <p>Central Turf Agronomy<br />123 Turf Science Drive<br />Greenville, TX 75401</p>
-            </div>
-            <div>
-              <p className="font-semibold text-ink">Hours</p>
-              <p>Monday - Friday: 8:00 AM - 5:00 PM CST</p>
+              <p>215 E 2nd. Street<br />Dewitt, IA 52742</p>
             </div>
           </div>
         </div>

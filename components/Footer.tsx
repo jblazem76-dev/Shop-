@@ -23,8 +23,8 @@ export function Footer() {
             and landscape teams who need predictable outcomes.
           </p>
           <div className="mt-4 text-xs text-slate">
-            <p>Phone: (555) 123-4567</p>
-            <p>Email: info@centralturf.com</p>
+            <p>Phone: 563-210-1616</p>
+            <p>Email: ctagronomy@gmail.com</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-4">
