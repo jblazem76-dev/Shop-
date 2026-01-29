@@ -1,5 +1,6 @@
 import { CTAButton } from "@/components/CTAButton";
 import { products } from "@/data/products";
+import Image from "next/image";
 
 type ProductPageProps = {
   params: { slug: string };
@@ -25,12 +26,25 @@ export default function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div className="space-y-12">
-      <div className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate">
-          {product.category}
-        </p>
-        <h1 className="text-4xl font-semibold text-ink">{product.name}</h1>
-        <p className="max-w-2xl text-lg text-slate">{product.primaryBenefit}</p>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate">
+            {product.category}
+          </p>
+          <h1 className="text-3xl font-semibold text-ink sm:text-4xl">{product.name}</h1>
+          <p className="max-w-2xl text-lg text-slate">{product.primaryBenefit}</p>
+        </div>
+        {product.choBadge && (
+          <div className="flex-shrink-0">
+            <Image
+              src="/cho-badge.png"
+              alt="Carbon Enhanced Formulations"
+              width={120}
+              height={120}
+              className="w-24 h-24 sm:w-32 sm:h-32"
+            />
+          </div>
+        )}
       </div>
 
       <section className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">

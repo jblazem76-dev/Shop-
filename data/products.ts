@@ -11,6 +11,7 @@ export interface Product {
   applicationRates?: string[];
   idealFor?: string[];
   featured?: boolean;
+  choBadge?: boolean;
 }
 
 export const products: Product[] = [
@@ -111,7 +112,8 @@ export const products: Product[] = [
       "For deficiencies: Apply 8 to 12 ounces per 1000 sq feet",
       "Applications can be made every 7 to 14 days as needed for desired results"
     ],
-    idealFor: ["Golf courses", "Sports turf", "Premium lawns"]
+    idealFor: ["Golf courses", "Sports turf", "Premium lawns"],
+    choBadge: true
   },
   {
     slug: "c-roots-aminos",
@@ -137,7 +139,8 @@ export const products: Product[] = [
       "Maintenance applications: Apply as a foliar spray at 3.0-6.0 ounces per 1000 square feet every 10-14 days",
       "Soil applications: Apply as a soil spray at 9.0-12.0 ounces per 1000 square feet every 15-30 days"
     ],
-    idealFor: ["Golf courses", "Sports turf", "Sod farms"]
+    idealFor: ["Golf courses", "Sports turf", "Sod farms"],
+    choBadge: true
   },
   {
     slug: "c-energy-calcium",
@@ -161,7 +164,8 @@ export const products: Product[] = [
       "Greens and Tees: Apply 3 to 8 ounces per 1000 square feet, in enough water for thorough coverage",
       "Fairways: Apply 1.5-8.0 ounces per 1000 square feet, in sufficient water for coverage"
     ],
-    idealFor: ["Golf courses", "Sports turf", "Ornamentals"]
+    idealFor: ["Golf courses", "Sports turf", "Ornamentals"],
+    choBadge: true
   },
   {
     slug: "humic",
@@ -186,7 +190,8 @@ export const products: Product[] = [
       "Foliar Application: Mix 0.74-2.2 ounces per 1000 square feet in spray solution",
       "Turfgrass: Apply 1.5 to 3.0 ounces per 1,000 square feet monthly. Water in for best results"
     ],
-    idealFor: ["All soil types", "Sandy soils", "Clay soils", "Golf courses"]
+    idealFor: ["All soil types", "Sandy soils", "Clay soils", "Golf courses"],
+    choBadge: true
   },
   {
     slug: "c-soils",
@@ -210,7 +215,8 @@ export const products: Product[] = [
     applicationRates: [
       "Apply 3.0-6.0 ounces per 1000 square feet with sufficient water for coverage every 14-28 days"
     ],
-    idealFor: ["Warm season grasses", "Cool season grasses", "Sod farms"]
+    idealFor: ["Warm season grasses", "Cool season grasses", "Sod farms"],
+    choBadge: true
   },
   {
     slug: "push-hold-plus",
@@ -230,7 +236,8 @@ export const products: Product[] = [
     applicationRates: [
       "Apply as directed for soil moisture management"
     ],
-    idealFor: ["Golf courses", "Sports turf", "Hydrophobic soils"]
+    idealFor: ["Golf courses", "Sports turf", "Hydrophobic soils"],
+    choBadge: true
   },
   {
     slug: "green-glo-max",
