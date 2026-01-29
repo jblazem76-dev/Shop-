@@ -29,7 +29,7 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 │   ├── ProductGrid.tsx    # Products grid layout
 │   └── ProgramCard.tsx    # Program display card
 ├── data/                  # Static data
-│   ├── products.ts        # Products catalog (9 products)
+│   ├── products.ts        # Products catalog (12 products)
 │   └── programs.ts        # Programs data
 ├── public/                # Static assets
 │   └── logo.png           # CTA Logo (green)
@@ -47,7 +47,7 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 ## Key Features
 - Apple-style clean, modern design
 - Responsive layout with category filtering
-- Product catalog with 9 products from CTA catalog:
+- Product catalog with 12 products from CTA catalog:
   - **Phosphite Blue** (Featured) - Foliar Treatment - Boost Stress Tolerance
   - **C-Color-N 20-2-5** - Color Enhancer - For Resilient & Vibrant Color
   - **C-Starter 3-18-18** - Growth & Rooting - Highly Soluble P&K
@@ -57,6 +57,9 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
   - **Humic** - Soil Health - Highly Concentrated Carbon
   - **C-Soils 1-0-2** - Soil Conditioning - Total Soil Conditioner
   - **Push-Hold+** - Wetting Agent - Your Best Secret Agent
+  - **Green Glo Max** - Color Enhancer - Elevate Your Turf to the Next Level
+  - **EfficienSi** - Foliar Treatment - Maximize Nutrient Absorption
+  - **Every Tank** - Tank Additive - Spray Tank Acidifier
 - Programs and methodology information
 - Science-based content sections
 - Contact page with full contact information
@@ -72,7 +75,8 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 - Cache headers configured for development
 
 ## Recent Changes
-- Updated product catalog with 9 products from CTA catalog PDF
+- Updated product catalog with 12 products from CTA catalog PDF
+- Added Green Glo Max, EfficienSi, and Every Tank products
 - Added detailed product information including key features, principle agents, and application rates
 - Added category filtering on products page
 - Phosphite Blue set as featured product on home page

@@ -231,6 +231,88 @@ export const products: Product[] = [
       "Apply as directed for soil moisture management"
     ],
     idealFor: ["Golf courses", "Sports turf", "Hydrophobic soils"]
+  },
+  {
+    slug: "green-glo-max",
+    name: "Green Glo Max",
+    category: "Color Enhancer",
+    tagline: "Elevate Your Turf to the Next Level",
+    primaryBenefit: "Boost chlorophyll production for a richer, more vibrant green with enhanced root health",
+    description: "Designed to boost chlorophyll production, it delivers a richer, more vibrant green. Enhanced root health ensures stronger, more resilient turf, while improved resource utilization means your turf thrives with less water and nutrients—saving you money and supporting sustainability. Perfect for high-traffic areas like golf courses and sports fields, it guarantees superior durability and visual appeal.",
+    keyFeatures: [
+      "Boosted Chlorophyll Production",
+      "Enhanced Root Health",
+      "Improved Resource Utilization",
+      "Superior Turf Performance"
+    ],
+    principleAgents: [
+      "Total Nitrogen (N): 7.00%",
+      "Sulfur (S): 12.00%",
+      "Copper (Cu): 0.500%",
+      "Iron (Fe): 9.00%",
+      "Magnesium (Mg): 4.00%",
+      "Manganese (Mn): 2.00%",
+      "Zinc (Zn): 2.00%"
+    ],
+    applicationRates: [
+      "General application rate is 2-5 pounds of product per acre applied as foliar spray",
+      "Additional applications can be made during growing season as needed"
+    ],
+    idealFor: ["Golf courses", "Sports fields", "High-traffic areas"]
+  },
+  {
+    slug: "efficiensi",
+    name: "EfficienSi",
+    category: "Foliar Treatment",
+    tagline: "Elevate Your Turf to the Next Level",
+    primaryBenefit: "Maximize nutrient absorption and boost plant health with proprietary uptake technology",
+    description: "EfficienSi is a proprietary blend of uptake and mobility compounds designed to maximize nutrient absorption and boost plant health. Whether you're applying herbicides, fungicides, growth regulators, or nutrients, EfficienSi ensures more of what your plants need gets to where it matters most.",
+    keyFeatures: [
+      "Boosted Chlorophyll Production",
+      "Enhanced Root Health",
+      "Improved Resource Utilization",
+      "Superior Turf Performance"
+    ],
+    principleAgents: [
+      "Silica: 10%",
+      "Enhanced with EfficienSi Technology",
+      "Derived from: Silica, Protein hydrolysates, Vegetal Extracts"
+    ],
+    applicationRates: [
+      "Apply 4-8 oz per acre in minimum of 20 gallons of water",
+      "Greens & Tees: 7-14 day intervals",
+      "Fairways: 14-28 days",
+      "Residential Lawns: 4-8 weeks",
+      "Sports Turf: 2-4 weeks"
+    ],
+    idealFor: ["Golf courses", "Fairways", "Sports turf", "Residential lawns"]
+  },
+  {
+    slug: "every-tank",
+    name: "Every Tank",
+    category: "Tank Additive",
+    tagline: "Spray Tank Acidifier",
+    primaryBenefit: "Increase tank mix compatibility and improve efficacy while lowering application rates",
+    description: "Every Tank is a spray tank acidifier which corrects alkaline hydrolysis of pesticides and fertilizers, neutralizes bicarbonates (hard water) in the spray tank solution. Every Tank makes all products in the spray tank more efficient, and often lower application rates of tank mix partners can be applied with greater results.",
+    keyFeatures: [
+      "Increase Tank Mix Compatibility",
+      "Lower Application Rates",
+      "Lower Costs",
+      "Less Chemicals into the Environment",
+      "Improved Efficacy"
+    ],
+    principleAgents: [
+      "Acidifiers: 20%",
+      "Emulsifiers: 0.5%",
+      "Color indicator: 1.0%",
+      "Inert Ingredients: 78.5%"
+    ],
+    applicationRates: [
+      "Add Every Tank into the spray tank prior to adding pesticides or fertilizers",
+      "Typical rate: 4-8 ounces per 100 gallons of water",
+      "Decreases water pH from 8.5 to 5.0 depending on water source"
+    ],
+    idealFor: ["All spray applications", "Hard water areas", "Tank mixing"]
   }
 ];
 
