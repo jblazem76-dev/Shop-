@@ -13,24 +13,26 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 ```
 /
 ├── app/                    # Next.js App Router pages
-│   ├── page.tsx           # Home page
+│   ├── page.tsx           # Home page (features Phosphate Blue)
 │   ├── layout.tsx         # Root layout
 │   ├── globals.css        # Global styles
-│   ├── contact/           # Contact page
+│   ├── contact/           # Contact page with contact info
 │   ├── products/          # Products listing & detail pages
 │   ├── programs/          # Programs page
 │   ├── resources/         # Resources page
 │   └── science/           # Science page
 ├── components/            # Reusable React components
-│   ├── Header.tsx         # Navigation header
-│   ├── Footer.tsx         # Page footer
+│   ├── Header.tsx         # Navigation header with CTA logo
+│   ├── Footer.tsx         # Page footer with CTA logo and contact
 │   ├── CTAButton.tsx      # Call-to-action button
 │   ├── ProductCard.tsx    # Product display card
 │   ├── ProductGrid.tsx    # Products grid layout
 │   └── ProgramCard.tsx    # Program display card
 ├── data/                  # Static data
-│   ├── products.ts        # Products data
+│   ├── products.ts        # Products catalog (6 products)
 │   └── programs.ts        # Programs data
+├── public/                # Static assets
+│   └── logo.png           # CTA Logo (green)
 ├── next.config.mjs        # Next.js configuration
 ├── tailwind.config.ts     # Tailwind CSS configuration
 ├── tsconfig.json          # TypeScript configuration
@@ -45,11 +47,29 @@ A modern, Apple-style MVP website for Central Turf Agronomy built with Next.js 1
 ## Key Features
 - Apple-style clean, modern design
 - Responsive layout
-- Product catalog with detail pages
+- Product catalog with 6 products:
+  - **Phosphate Blue** (Featured) - Foliar Nutrition
+  - Carbon Boost - Soil Conditioning
+  - Foliar Iron Plus - Foliar Nutrition
+  - Moisture Manager - Soil Moisture
+  - Root Zone Enhancer - Soil Conditioning
+  - Stress Guard - Plant Health
 - Programs and methodology information
 - Science-based content sections
-- Contact page
+- Contact page with full contact information
+
+## Contact Information
+- Phone: (555) 123-4567
+- Email: info@centralturf.com
+- Address: 123 Turf Science Drive, Greenville, TX 75401
+- Hours: Monday - Friday: 8:00 AM - 5:00 PM CST
 
 ## Configuration
 - Server runs on 0.0.0.0:5000
 - Cache headers configured for development
+
+## Recent Changes
+- Added CTA green logo site-wide (Header, Footer, Contact page)
+- Created full product catalog with Phosphate Blue as featured product
+- Updated contact page with full contact information
+- Fixed grammatical issues and improved content consistency

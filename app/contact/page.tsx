@@ -1,4 +1,5 @@
 import { CTAButton } from "@/components/CTAButton";
+import Image from "next/image";
 
 export default function ContactPage() {
   return (
@@ -11,17 +12,44 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div className="rounded-3xl border border-mist p-8">
-        <h2 className="text-2xl font-semibold text-ink">How we can help</h2>
-        <ul className="mt-4 space-y-3 text-sm text-slate">
-          <li>• Build a seasonal plan for your turf conditions and traffic demands.</li>
-          <li>• Match CTA inputs to your current fertility and moisture strategy.</li>
-          <li>• Coordinate delivery timing across multiple sites.</li>
-        </ul>
-        <div className="mt-8">
-          <CTAButton href="mailto:info@central-turf-agronomy.example">
-            Request a Quote
-          </CTAButton>
+      <div className="grid gap-8 md:grid-cols-2">
+        <div className="rounded-3xl border border-mist p-8">
+          <h2 className="text-2xl font-semibold text-ink">How We Can Help</h2>
+          <ul className="mt-4 space-y-3 text-sm text-slate">
+            <li>• Build a seasonal plan for your turf conditions and traffic demands.</li>
+            <li>• Match CTA inputs to your current fertility and moisture strategy.</li>
+            <li>• Coordinate delivery timing across multiple sites.</li>
+          </ul>
+          <div className="mt-8">
+            <CTAButton href="mailto:info@centralturf.com">
+              Request a Quote
+            </CTAButton>
+          </div>
+        </div>
+
+        <div className="rounded-3xl bg-mist p-8">
+          <div className="flex items-center gap-4 mb-6">
+            <Image src="/logo.png" alt="CTA Logo" width={64} height={64} style={{ width: 'auto', height: '64px' }} />
+            <h2 className="text-2xl font-semibold text-ink">Contact Information</h2>
+          </div>
+          <div className="space-y-4 text-slate">
+            <div>
+              <p className="font-semibold text-ink">Phone</p>
+              <p>(555) 123-4567</p>
+            </div>
+            <div>
+              <p className="font-semibold text-ink">Email</p>
+              <p>info@centralturf.com</p>
+            </div>
+            <div>
+              <p className="font-semibold text-ink">Address</p>
+              <p>Central Turf Agronomy<br />123 Turf Science Drive<br />Greenville, TX 75401</p>
+            </div>
+            <div>
+              <p className="font-semibold text-ink">Hours</p>
+              <p>Monday - Friday: 8:00 AM - 5:00 PM CST</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

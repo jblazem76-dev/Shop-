@@ -28,7 +28,7 @@ export default function SciencePage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-ink">Why foliar nutrition matters</h2>
+        <h2 className="text-2xl font-semibold text-ink">Why Foliar Nutrition Matters</h2>
         <p className="max-w-3xl text-slate">
           Foliar applications act quickly and help the plant respond when the soil is too cold, too wet,
           or too dry. By keeping leaf-level nutrition steady, you support photosynthesis without forcing

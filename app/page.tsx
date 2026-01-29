@@ -21,7 +21,8 @@ const steps = [
 ];
 
 export default function HomePage() {
-  const featuredProducts = products.slice(0, 3);
+  const featuredProduct = products.find((p) => p.slug === "phosphate-blue");
+  const otherProducts = products.filter((p) => p.slug !== "phosphate-blue").slice(0, 3);
 
   return (
     <div className="space-y-24">
@@ -64,19 +65,47 @@ export default function HomePage() {
         </div>
       </section>
 
+      {featuredProduct && (
+        <section className="space-y-10">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-slate">Featured Product</p>
+            <h2 className="mt-2 text-3xl font-semibold text-ink">{featuredProduct.name}</h2>
+          </div>
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="rounded-3xl bg-gradient-to-br from-blue-50 to-blue-100 p-8">
+              <p className="text-lg font-medium text-ink">{featuredProduct.primaryBenefit}</p>
+              <p className="mt-4 text-slate">{featuredProduct.description}</p>
+              <div className="mt-6">
+                <CTAButton href={`/products/${featuredProduct.slug}`}>
+                  Learn More
+                </CTAButton>
+              </div>
+            </div>
+            <div className="rounded-3xl border border-mist p-8">
+              <h3 className="text-xl font-semibold text-ink">How It Works</h3>
+              <ul className="mt-4 space-y-3 text-sm text-slate">
+                {featuredProduct.howItWorks.map((item) => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="space-y-10">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <h2 className="text-3xl font-semibold text-ink">Featured Products</h2>
+            <h2 className="text-3xl font-semibold text-ink">More Products</h2>
             <p className="mt-3 max-w-xl text-slate">
-              A focused set of CTA essentials. Product details will populate once the catalog is loaded.
+              A focused set of CTA essentials designed for consistent, science-led turf management.
             </p>
           </div>
           <CTAButton href="/products" variant="secondary">
-            View all products
+            View All Products
           </CTAButton>
         </div>
-        <ProductGrid products={featuredProducts} />
+        <ProductGrid products={otherProducts} />
       </section>
 
       <section className="grid gap-10 lg:grid-cols-[1.2fr_1fr]">

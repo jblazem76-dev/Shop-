@@ -7,8 +7,8 @@ export default function ProductsPage() {
       <div className="space-y-4">
         <h1 className="text-4xl font-semibold text-ink">All Products</h1>
         <p className="max-w-2xl text-slate">
-          Explore CTA inputs by category. Once the catalog files are connected, each product will include
-          a clear benefit statement, application summary, and the science behind it.
+          Explore CTA inputs by category. Each product includes a clear benefit statement, 
+          application summary, and the science behind it.
         </p>
       </div>
       <ProductsClient products={products} />
