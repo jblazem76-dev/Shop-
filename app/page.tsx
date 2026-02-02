@@ -22,7 +22,10 @@ const steps = [
 
 export default function HomePage() {
   const featuredProduct = products.find((p) => p.featured);
-  const otherProducts = products.filter((p) => !p.featured).slice(0, 3);
+  const highlightSlugs = ["efficiensi", "c-color-n", "c-starter"];
+  const otherProducts = highlightSlugs
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter((p): p is typeof products[number] => p !== undefined);
 
   return (
     <div className="space-y-16 sm:space-y-24">
