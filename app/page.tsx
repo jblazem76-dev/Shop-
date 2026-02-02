@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CTAButton } from "@/components/CTAButton";
 import { ProductGrid } from "@/components/ProductGrid";
 import { products } from "@/data/products";
@@ -6,17 +7,20 @@ const steps = [
   {
     title: "Feed the Plant",
     description:
-      "Target photosynthesis with efficient foliar support so the plant produces more energy from the light it already receives."
+      "Target photosynthesis with efficient foliar support so the plant produces more energy from the light it already receives.",
+    image: "/plant.png"
   },
   {
     title: "Condition the Soil",
     description:
-      "Build soil structure and oxygen movement so roots can exchange water, air, and nutrients without stress."
+      "Build soil structure and oxygen movement so roots can exchange water, air, and nutrients without stress.",
+    image: "/earth.png"
   },
   {
     title: "Manage Soil Moisture",
     description:
-      "Keep moisture even in the root zone to reduce swings that interrupt growth or invite disease pressure."
+      "Keep moisture even in the root zone to reduce swings that interrupt growth or invite disease pressure.",
+    image: "/water.png"
   }
 ];
 
@@ -60,6 +64,15 @@ export default function HomePage() {
         <div className="grid gap-6 md:grid-cols-3">
           {steps.map((step) => (
             <div key={step.title} className="rounded-3xl bg-mist p-6">
+              <div className="mb-4 flex justify-center">
+                <Image
+                  src={step.image}
+                  alt={step.title}
+                  width={200}
+                  height={100}
+                  className="h-24 w-auto object-contain"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-ink">{step.title}</h3>
               <p className="mt-3 text-sm text-slate">{step.description}</p>
             </div>
