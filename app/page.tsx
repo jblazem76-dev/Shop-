@@ -8,13 +8,13 @@ const steps = [
     title: "Feed the Plant",
     description:
       "Target photosynthesis with efficient foliar support so the plant produces more energy from the light it already receives.",
-    image: "/plant.png"
+    image: "/earth.png"
   },
   {
     title: "Condition the Soil",
     description:
       "Build soil structure and oxygen movement so roots can exchange water, air, and nutrients without stress.",
-    image: "/earth.png"
+    image: "/plant.png"
   },
   {
     title: "Manage Soil Moisture",
