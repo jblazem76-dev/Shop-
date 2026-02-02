@@ -35,11 +35,10 @@ export default function HomePage() {
             Central Turf Agronomy
           </p>
           <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-6xl">
-            Supplement Photosynthesis.
+            HIGH Performance. MAX Returns.
           </h1>
           <p className="max-w-2xl text-lg text-slate">
-            CTA pairs calm, science-led inputs with clear guidance so turf teams can build
-            consistent plant energy without overcorrecting.
+            Predictable performance starts with CTA.
           </p>
           <div className="flex flex-wrap gap-4">
             <CTAButton href="/products">Explore Products</CTAButton>
