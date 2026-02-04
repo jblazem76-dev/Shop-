@@ -74,6 +74,15 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
         {product.idealFor && product.idealFor.length > 0 && (
           <div className="rounded-3xl bg-mist p-6">
+            <div className="mb-6 flex justify-center">
+              <Image
+                src={`/products/${product.slug}.png`}
+                alt={product.name}
+                width={300}
+                height={300}
+                className="h-48 w-auto object-contain"
+              />
+            </div>
             <h3 className="text-xl font-semibold text-ink">Who it&apos;s for</h3>
             <ul className="mt-4 space-y-2 text-sm text-slate">
               {product.idealFor.map((item) => (
