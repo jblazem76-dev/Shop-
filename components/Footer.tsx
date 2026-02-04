@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const footerLinks = [
+  { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/programs", label: "Programs" },
   { href: "/science", label: "Science" },
