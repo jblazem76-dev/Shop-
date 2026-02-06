@@ -11,6 +11,20 @@ export default function ResourcesPage() {
         </p>
       </div>
 
+      <div className="rounded-3xl bg-pine p-8 text-white">
+        <h2 className="text-2xl font-semibold">Become a Dealer</h2>
+        <p className="mt-3 text-sm text-white/80">
+          Join the CTA dealer network and give your clients science-backed turf programs
+          that deliver predictable results. Access exclusive tools, training, and support.
+        </p>
+        <Link
+          href="/dealer"
+          className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-pine transition hover:bg-white/90"
+        >
+          Learn More
+        </Link>
+      </div>
+
       <div className="rounded-3xl bg-gradient-to-br from-green-50 to-green-100 p-8">
         <h2 className="text-2xl font-semibold text-ink">Product Catalog</h2>
         <p className="mt-3 text-slate">

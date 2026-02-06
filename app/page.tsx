@@ -135,8 +135,9 @@ export default function HomePage() {
             <li>Why together: coordinated timing improves consistency across crews and sites.</li>
             <li>Result: steadier performance without over-application.</li>
           </ul>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-wrap gap-4">
             <CTAButton href="/programs">View All Programs</CTAButton>
+            <CTAButton href="/dealer" variant="secondary">Become a Dealer</CTAButton>
           </div>
         </div>
         <div className="rounded-3xl bg-pine p-8 text-white">
