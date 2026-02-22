@@ -45,14 +45,24 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16 sm:space-y-24">
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-6 py-12 sm:px-10 sm:py-16">
-        <div className="relative z-10 flex flex-col items-center text-center">
+      <section className="relative left-1/2 right-1/2 -mx-[50vw] -mt-8 w-screen overflow-hidden bg-gray-900 px-6 py-12 sm:-mt-16 sm:px-10 sm:py-16">
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-grass-bg.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-gray-900/50" />
+        </div>
+        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
           <Image
             src="/cho-badge-hero.png"
             alt="Carbon Enhanced Formulations"
-            width={180}
-            height={180}
-            className="h-32 w-32 sm:h-44 sm:w-44"
+            width={200}
+            height={200}
+            className="h-40 w-40 sm:h-48 sm:w-48"
           />
           <h2 className="mt-6 text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
             Carbon Enhanced Formulations
