@@ -2,9 +2,9 @@ import { CTAButton } from "@/components/CTAButton";
 
 const benefits = [
   {
-    title: "Soil Calculator Technology",
+    title: "Carbon Enhanced Formulations",
     description:
-      "Convert any soil test into precise product recommendations. No guesswork. Pure agronomy."
+      "CHO-based products that support photosynthesis and plant energy. Science you can see in the results."
   },
   {
     title: "Dual System Advantage",
@@ -34,9 +34,9 @@ const partners = [
 
 const offerings = [
   {
-    title: "Access to Soil Calculator (in development)",
+    title: "Seasonal Program Guides",
     description:
-      "Proprietary platform that translates soil test data into exact CTA product recommendations and application schedules."
+      "Ready-to-use application schedules for spring, summer, aeration, and color-building programs tailored to your region."
   },
   {
     title: "Complete Product Lineup",
@@ -100,8 +100,8 @@ export default function DealerPage() {
         <div className="rounded-3xl border border-mist p-8">
           <h2 className="text-2xl font-semibold text-ink">The Approach</h2>
           <ul className="mt-6 space-y-3 text-sm text-slate">
-            <li>Problem solved: generic programs that ignore soil test reality.</li>
-            <li>Why together: calculator + products + training = consistency at scale.</li>
+            <li>Problem solved: generic programs that deliver inconsistent results.</li>
+            <li>Why together: products + training + seasonal guides = consistency at scale.</li>
             <li>Result: differentiated service backed by agronomic precision.</li>
           </ul>
         </div>
