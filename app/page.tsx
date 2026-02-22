@@ -24,15 +24,67 @@ const steps = [
   }
 ];
 
+const choSlugs = [
+  "c-strength-micros",
+  "c-roots-aminos",
+  "c-energy-calcium",
+  "humic",
+  "c-soils",
+  "push-hold-plus"
+];
+
 export default function HomePage() {
   const featuredProduct = products.find((p) => p.featured);
   const highlightSlugs = ["efficiensi", "c-color-n", "c-starter"];
   const otherProducts = highlightSlugs
     .map((slug) => products.find((p) => p.slug === slug))
     .filter((p): p is typeof products[number] => p !== undefined);
+  const choProducts = choSlugs
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter((p): p is typeof products[number] => p !== undefined);
 
   return (
     <div className="space-y-16 sm:space-y-24">
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-6 py-12 sm:px-10 sm:py-16">
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <Image
+            src="/cho-badge-hero.png"
+            alt="Carbon Enhanced Formulations"
+            width={180}
+            height={180}
+            className="h-32 w-32 sm:h-44 sm:w-44"
+          />
+          <h2 className="mt-6 text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
+            Carbon Enhanced Formulations
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-white/70 sm:text-base">
+            Six products built on the CHO advantage — carbon, hydrogen, and oxygen working
+            together to fuel photosynthesis and drive predictable turf performance.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            {choProducts.map((p) => (
+              <a key={p.slug} href={`/products/${p.slug}`} className="group flex flex-col items-center">
+                <div className="rounded-2xl bg-white/10 p-2 transition group-hover:bg-white/20">
+                  <Image
+                    src={`/products/${p.slug}.png`}
+                    alt={p.name}
+                    width={100}
+                    height={100}
+                    className="h-20 w-20 object-contain sm:h-24 sm:w-24"
+                  />
+                </div>
+                <span className="mt-2 text-xs font-medium text-white/80 group-hover:text-white">
+                  {p.name}
+                </span>
+              </a>
+            ))}
+          </div>
+          <div className="mt-8">
+            <CTAButton href="/science">Learn About CHO</CTAButton>
+          </div>
+        </div>
+      </section>
+
       <section className="space-y-8">
         <div className="flex flex-col gap-6">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate">
