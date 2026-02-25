@@ -2,41 +2,21 @@
 
 import { useState } from "react";
 
-const productItems = [
-  { name: "Phosphite Blue", category: "Foliar Treatment" },
-  { name: "C-Color-N 20-2-5", category: "Color Enhancer" },
-  { name: "C-Starter 3-18-18", category: "Growth & Rooting" },
-  { name: "C-Strength-Micros", category: "Micronutrients" },
-  { name: "C-Roots-Aminos 6-2-3", category: "Root Development" },
-  { name: "C-Energy-Calcium", category: "Plant Health" },
-  { name: "Humic", category: "Soil Health" },
-  { name: "C-Soils 1-0-2", category: "Soil Conditioning" },
-  { name: "Push-Hold+", category: "Wetting Agent" },
-  { name: "Green Glo Max", category: "Color Enhancer" },
-  { name: "EfficienSi", category: "Foliar Treatment" },
-  { name: "Every Tank", category: "Tank Additive" }
-];
-
 const diyItems = [
-  { name: "Spring 28-0-8 (50 lb bag)", price: "$89" },
-  { name: "Summer 28-3-10 (50 lb bag)", price: "$49" },
-  { name: "Fall 11-2-9 Organic (50 lb bag)", price: "$79" },
-  { name: "Weed Control 3-Way Herbicide (1 gal)", price: "$79" },
-  { name: "Full Season Program (all 3 + spray)", price: "$296" }
+  { name: "Spring 28-0-8 (50 lb bag)", price: "$89", featured: false },
+  { name: "Summer 28-3-10 (50 lb bag)", price: "$49", featured: false },
+  { name: "Fall 11-2-9 Organic (50 lb bag)", price: "$79", featured: false },
+  { name: "Weed Control 3-Way Herbicide (1 gal)", price: "$79", featured: false },
+  { name: "Full Season Program (all 3 + spray)", price: "$296", featured: true }
 ];
 
 export default function OrderPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [diyQuantities, setDiyQuantities] = useState<Record<string, number>>({});
 
-  function updateQty(name: string, value: string, isDiy = false) {
+  function updateQty(name: string, value: string) {
     const num = parseInt(value) || 0;
-    if (isDiy) {
-      setDiyQuantities((prev) => ({ ...prev, [name]: num }));
-    } else {
-      setQuantities((prev) => ({ ...prev, [name]: num }));
-    }
+    setDiyQuantities((prev) => ({ ...prev, [name]: num }));
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -45,16 +25,12 @@ export default function OrderPage() {
     const data = new FormData(form);
 
     const orderLines: string[] = [];
-    productItems.forEach((p) => {
-      const qty = quantities[p.name] || 0;
-      if (qty > 0) orderLines.push(`${p.name}: ${qty}`);
-    });
     diyItems.forEach((p) => {
       const qty = diyQuantities[p.name] || 0;
       if (qty > 0) orderLines.push(`${p.name}: ${qty}`);
     });
 
-    const subject = encodeURIComponent("CTA Order Request");
+    const subject = encodeURIComponent("CTA DIY Lawn Care Order Request");
     const body = encodeURIComponent(
       `Name: ${data.get("name")}\nAddress: ${data.get("address")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone")}\n\nProducts:\n${orderLines.join("\n")}\n\nDelivery Instructions:\n${data.get("delivery")}`
     );
@@ -152,34 +128,35 @@ export default function OrderPage() {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-mist p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-ink">Professional Products</h2>
-          <p className="mt-1 text-sm text-slate">Set a quantity for any products you'd like to order.</p>
-          <div className="mt-6 space-y-4">
-            {productItems.map((item) => (
-              <div key={item.name} className="flex items-center justify-between gap-4 rounded-xl border border-mist px-4 py-3 transition hover:border-pine/30">
-                <div className="min-w-0">
-                  <p className="text-sm font-medium text-ink">{item.name}</p>
-                  <p className="text-xs text-slate">{item.category}</p>
-                </div>
-                <input
-                  type="number"
-                  min="0"
-                  value={quantities[item.name] || ""}
-                  onChange={(e) => updateQty(item.name, e.target.value)}
-                  className="w-20 rounded-lg border border-mist bg-white px-3 py-2 text-center text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                  placeholder="0"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section className="rounded-3xl border-2 border-green-500 bg-gray-900 p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-white">DIY Lawn Care Products</h2>
-          <p className="mt-1 text-sm text-white/60">Homeowner seasonal program products.</p>
-          <div className="mt-6 space-y-4">
-            {diyItems.map((item) => (
+          <p className="mt-1 text-sm text-white/60">Select individual steps or grab the full season package.</p>
+
+          <div className="mt-8 relative rounded-2xl border-2 border-yellow-400 bg-gradient-to-br from-green-800 to-green-900 p-5 sm:p-6">
+            <span className="absolute -top-3 right-4 rounded-full bg-yellow-400 px-4 py-1 text-xs font-bold uppercase tracking-wide text-gray-900">
+              ★ Best Value
+            </span>
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-lg font-bold text-white sm:text-xl">Full Season Program</p>
+                <p className="text-sm text-white/70">All 3 seasonal fertilizers + Broadleaf Spray</p>
+                <p className="mt-1 text-sm text-white/50">Treats up to 12,000 sq ft · Delivered to your door</p>
+                <p className="mt-2 text-3xl font-bold text-yellow-400 sm:text-4xl">$296</p>
+              </div>
+              <input
+                type="number"
+                min="0"
+                value={diyQuantities["Full Season Program (all 3 + spray)"] || ""}
+                onChange={(e) => updateQty("Full Season Program (all 3 + spray)", e.target.value)}
+                className="w-20 rounded-lg border border-yellow-400/30 bg-white/10 px-3 py-3 text-center text-lg font-semibold text-white outline-none transition focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
+                placeholder="0"
+              />
+            </div>
+          </div>
+
+          <div className="mt-6 space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-white/40">Or order individually</p>
+            {diyItems.filter((item) => !item.featured).map((item) => (
               <div key={item.name} className="flex items-center justify-between gap-4 rounded-xl border border-white/10 px-4 py-3 transition hover:border-green-500/50">
                 <div className="min-w-0">
                   <p className="text-sm font-medium text-white">{item.name}</p>
@@ -189,7 +166,7 @@ export default function OrderPage() {
                   type="number"
                   min="0"
                   value={diyQuantities[item.name] || ""}
-                  onChange={(e) => updateQty(item.name, e.target.value, true)}
+                  onChange={(e) => updateQty(item.name, e.target.value)}
                   className="w-20 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-center text-sm text-white outline-none transition focus:border-green-400 focus:ring-1 focus:ring-green-400"
                   placeholder="0"
                 />
