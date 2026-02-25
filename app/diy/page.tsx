@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { CTAButton } from "@/components/CTAButton";
+
+export const metadata: Metadata = {
+  title: "DIY Lawn Care Program",
+  description: "Professional-grade DIY lawn care program — 3 seasonal applications for $296. Spring, summer, and fall fertilizers with weed control. Free delivery within 30 miles of DeWitt, Iowa."
+};
 
 const steps = [
   {

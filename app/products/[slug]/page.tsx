@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { CTAButton } from "@/components/CTAButton";
 import { products } from "@/data/products";
 import Image from "next/image";
@@ -5,6 +6,17 @@ import Image from "next/image";
 type ProductPageProps = {
   params: { slug: string };
 };
+
+export function generateMetadata({ params }: ProductPageProps): Metadata {
+  const product = products.find((item) => item.slug === params.slug);
+  if (!product) {
+    return { title: "Product Not Found" };
+  }
+  return {
+    title: `${product.name} — ${product.category}`,
+    description: `${product.primaryBenefit}. ${product.description.slice(0, 150)}...`
+  };
+}
 
 export default function ProductPage({ params }: ProductPageProps) {
   const product = products.find((item) => item.slug === params.slug);

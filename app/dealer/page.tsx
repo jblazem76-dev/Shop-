@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { CTAButton } from "@/components/CTAButton";
+
+export const metadata: Metadata = {
+  title: "Become a Dealer",
+  description: "Partner with Central Turf Agronomy. Access Carbon Enhanced Formulations, professional training, seasonal program guides, and marketing resources. Dealer program for lawn care professionals and turf managers."
+};
 
 const benefits = [
   {

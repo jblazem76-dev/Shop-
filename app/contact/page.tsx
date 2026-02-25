@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { CTAButton } from "@/components/CTAButton";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Contact Central Turf Agronomy for product information, program guidance, and volume pricing. Reach Brent Smith at 563-210-1616 or ctagronomy@gmail.com. Located in DeWitt, Iowa."
+};
 
 export default function ContactPage() {
   return (

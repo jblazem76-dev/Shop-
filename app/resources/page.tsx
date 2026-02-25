@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Resources & Downloads",
+  description: "Download the CTA product catalog, safety data sheets, and product labels. Access dealer program information and technical resources for turf care professionals."
+};
 
 export default function ResourcesPage() {
   return (

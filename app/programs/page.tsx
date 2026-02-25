@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { ProgramCard } from "@/components/ProgramCard";
 import { programs } from "@/data/programs";
+
+export const metadata: Metadata = {
+  title: "Seasonal Turf Programs",
+  description: "CTA seasonal turf programs for spring, summer, aeration, and color building. Bundled product recommendations designed for consistent results across golf courses, sports fields, and professional lawn care."
+};
 
 export default function ProgramsPage() {
   return (

@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "The Science Behind CTA",
+  description: "Learn about the Carbon Advantage (CHO) and the science of photosynthesis-driven turf care. How carbon, hydrogen, and oxygen fuel plant energy for healthier, more resilient turf."
+};
 
 export default function SciencePage() {
   return (

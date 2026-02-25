@@ -4,8 +4,17 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Central Turf Agronomy",
-  description: "Supplement Photosynthesis with calm, science-led turf inputs."
+  title: {
+    default: "Central Turf Agronomy | Science-Led Turf Care Products & Programs",
+    template: "%s | Central Turf Agronomy"
+  },
+  description: "Professional turf care products and seasonal programs built on soil science. Carbon Enhanced Formulations (CHO), foliar treatments, and agronomist-designed programs for golf courses, sports turf, and lawn care professionals. DeWitt, Iowa.",
+  keywords: ["turf care", "lawn care products", "foliar treatment", "carbon enhanced formulations", "CHO", "golf course maintenance", "sports turf", "soil health", "Central Turf Agronomy", "DeWitt Iowa", "agronomist", "lawn fertilizer"],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Central Turf Agronomy"
+  }
 };
 
 export default function RootLayout({

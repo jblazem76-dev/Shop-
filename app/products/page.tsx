@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { ProductsClient } from "@/app/products/ProductsClient";
 import { products } from "@/data/products";
+
+export const metadata: Metadata = {
+  title: "Turf Care Products",
+  description: "Explore 12 professional turf care products including foliar treatments, soil conditioners, micronutrients, and Carbon Enhanced Formulations. Application rates and technical details for golf courses, sports turf, and lawn care."
+};
 
 export default function ProductsPage() {
   return (
