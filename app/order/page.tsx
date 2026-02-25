@@ -89,7 +89,7 @@ export default function OrderPage() {
                 type="text"
                 required
                 className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                placeholder="Brent Smith"
+                placeholder="John Anderson"
               />
             </div>
             <div className="sm:col-span-2">
@@ -100,7 +100,7 @@ export default function OrderPage() {
                 type="text"
                 required
                 className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                placeholder="215 E 2nd Street, Dewitt, IA 52742"
+                placeholder="742 Maple Drive, Davenport, IA 52801"
               />
             </div>
             <div>
@@ -111,7 +111,7 @@ export default function OrderPage() {
                 type="email"
                 required
                 className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                placeholder="email@example.com"
+                placeholder="john.anderson@email.com"
               />
             </div>
             <div>
@@ -122,7 +122,7 @@ export default function OrderPage() {
                 type="tel"
                 required
                 className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                placeholder="563-210-1616"
+                placeholder="563-555-0147"
               />
             </div>
           </div>
