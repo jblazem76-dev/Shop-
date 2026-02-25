@@ -115,6 +115,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="rounded-3xl bg-gradient-to-br from-green-50 to-green-100 p-8">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-pine">DIY Lawn Care Program</p>
+            <h2 className="mt-2 text-2xl font-semibold text-ink sm:text-3xl">
+              Your Best Lawn Starts Here
+            </h2>
+            <p className="mt-3 max-w-xl text-sm text-slate">
+              A complete, science-backed 3-step seasonal program for homeowners who want
+              professional-grade results. Starting at just $296 for the full season — delivered to your door.
+            </p>
+            <div className="mt-6">
+              <CTAButton href="/diy">View the Program</CTAButton>
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="text-4xl font-bold text-pine sm:text-5xl">$296</p>
+            <p className="mt-1 text-xs text-slate">Full Season · Delivered</p>
+          </div>
+        </div>
+      </section>
+
       <section className="space-y-10">
         <div>
           <h2 className="text-3xl font-semibold text-ink">The CTA 3-Step Method</h2>
