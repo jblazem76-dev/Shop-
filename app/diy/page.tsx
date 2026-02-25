@@ -153,6 +153,21 @@ export default function DIYPage() {
         </p>
       </section>
 
+      <section className="rounded-3xl bg-gradient-to-br from-green-50 to-green-100 p-8 text-center">
+        <h2 className="text-2xl font-semibold text-ink sm:text-3xl">Ready to Order?</h2>
+        <p className="mx-auto mt-3 max-w-lg text-sm text-slate">
+          Fill out our order form and we'll confirm your request and schedule delivery.
+        </p>
+        <div className="mt-6">
+          <a
+            href="/order"
+            className="inline-flex rounded-full bg-pine px-8 py-3 text-sm font-semibold text-white transition hover:bg-pine/90"
+          >
+            Go to Order Form
+          </a>
+        </div>
+      </section>
+
       <section className="rounded-3xl bg-gray-900 p-8 text-white sm:p-12">
         <h2 className="text-3xl font-bold">Ready to Get Started?</h2>
         <p className="mt-4 text-white/70">
