@@ -12,6 +12,8 @@ const diyItems = [
 
 export default function OrderPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [diyQuantities, setDiyQuantities] = useState<Record<string, number>>({});
 
   function updateQty(name: string, value: string) {
@@ -19,24 +21,39 @@ export default function OrderPage() {
     setDiyQuantities((prev) => ({ ...prev, [name]: num }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const orderLines: string[] = [];
-    diyItems.forEach((p) => {
-      const qty = diyQuantities[p.name] || 0;
-      if (qty > 0) orderLines.push(`${p.name}: ${qty}`);
-    });
+    const items = diyItems
+      .filter((p) => (diyQuantities[p.name] || 0) > 0)
+      .map((p) => ({ name: p.name, price: p.price, qty: diyQuantities[p.name] }));
 
-    const subject = encodeURIComponent("CTA DIY Lawn Care Order Request");
-    const body = encodeURIComponent(
-      `Name: ${data.get("name")}\nAddress: ${data.get("address")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone")}\n\nProducts:\n${orderLines.join("\n")}\n\nDelivery Instructions:\n${data.get("delivery")}`
-    );
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          address: data.get("address"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          items,
+          delivery: data.get("delivery") || ""
+        })
+      });
 
-    window.location.href = `mailto:ctagronomy@gmail.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+      if (!res.ok) throw new Error("Failed to submit");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or call 563-210-1616.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -47,13 +64,13 @@ export default function OrderPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-3xl font-semibold text-ink">Order Request Sent</h2>
+        <h2 className="text-3xl font-semibold text-ink">Order Request Received</h2>
         <p className="max-w-md text-slate">
-          Your email client should have opened with your order details. If it didn't,
-          please email ctagronomy@gmail.com directly or call 563-210-1616.
+          We've received your order request and will follow up shortly to confirm
+          pricing and delivery details. You can also reach us at 563-210-1616.
         </p>
         <button
-          onClick={() => setSubmitted(false)}
+          onClick={() => { setSubmitted(false); setDiyQuantities({}); }}
           className="rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine/90"
         >
           Submit Another Order
@@ -76,6 +93,12 @@ export default function OrderPage() {
           pricing, and delivery details.
         </p>
       </div>
+
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-10">
         <section className="rounded-3xl border border-mist p-6 sm:p-8">
@@ -188,9 +211,10 @@ export default function OrderPage() {
         <div className="text-center">
           <button
             type="submit"
-            className="rounded-full bg-pine px-10 py-4 text-sm font-semibold text-white transition hover:bg-pine/90"
+            disabled={submitting}
+            className="rounded-full bg-pine px-10 py-4 text-sm font-semibold text-white transition hover:bg-pine/90 disabled:opacity-50"
           >
-            Submit Order Request
+            {submitting ? "Submitting..." : "Submit Order Request"}
           </button>
           <p className="mt-3 text-xs text-slate">
             We'll confirm availability and pricing via email or phone.
