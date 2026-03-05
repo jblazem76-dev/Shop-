@@ -3,23 +3,33 @@
 import { useState } from "react";
 
 const diyItems = [
-  { name: "Spring 28-0-8 (50 lb bag)", price: "$89", featured: false },
-  { name: "Summer 28-3-10 (50 lb bag)", price: "$49", featured: false },
-  { name: "Fall 11-2-9 Organic (50 lb bag)", price: "$79", featured: false },
-  { name: "Weed Control 3-Way Herbicide (1 gal)", price: "$79", featured: false },
-  { name: "Full Season Program (all 3 + spray)", price: "$296", featured: true }
+  { name: "Spring 28-0-8 (50 lb bag)", price: 89, featured: false },
+  { name: "Summer 28-3-10 (50 lb bag)", price: 49, featured: false },
+  { name: "Fall 11-2-9 Organic (50 lb bag)", price: 79, featured: false },
+  { name: "Weed Control 3-Way Herbicide (1 gal)", price: 79, featured: false },
+  { name: "Full Season Program (all 3 + spray)", price: 296, featured: true }
 ];
+
+const APPLICATION_FEE = 150;
 
 export default function OrderPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [diyQuantities, setDiyQuantities] = useState<Record<string, number>>({});
+  const [applyForMe, setApplyForMe] = useState(false);
 
   function updateQty(name: string, value: string) {
     const num = parseInt(value) || 0;
     setDiyQuantities((prev) => ({ ...prev, [name]: num }));
   }
+
+  const productTotal = diyItems.reduce((sum, item) => {
+    const qty = diyQuantities[item.name] || 0;
+    return sum + item.price * qty;
+  }, 0);
+
+  const orderTotal = productTotal + (applyForMe ? APPLICATION_FEE : 0);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,7 +41,11 @@ export default function OrderPage() {
 
     const items = diyItems
       .filter((p) => (diyQuantities[p.name] || 0) > 0)
-      .map((p) => ({ name: p.name, price: p.price, qty: diyQuantities[p.name] }));
+      .map((p) => ({ name: p.name, price: `$${p.price}`, qty: diyQuantities[p.name] }));
+
+    if (applyForMe) {
+      items.push({ name: "Apply For Me (Professional Application)", price: `$${APPLICATION_FEE}`, qty: 1 });
+    }
 
     try {
       const res = await fetch("/api/orders", {
@@ -70,7 +84,7 @@ export default function OrderPage() {
           pricing and delivery details. You can also reach us at 563-210-1616.
         </p>
         <button
-          onClick={() => { setSubmitted(false); setDiyQuantities({}); }}
+          onClick={() => { setSubmitted(false); setDiyQuantities({}); setApplyForMe(false); }}
           className="rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine/90"
         >
           Submit Another Order
@@ -164,7 +178,7 @@ export default function OrderPage() {
                 <p className="text-lg font-bold text-white sm:text-xl">Full Season Program</p>
                 <p className="text-sm text-white/70">All 3 seasonal fertilizers + Broadleaf Spray</p>
                 <p className="mt-1 text-sm text-white/50">Treats up to 12,000 sq ft · Delivered to your door</p>
-                <p className="mt-2 text-3xl font-bold text-yellow-400 sm:text-4xl">$296</p>
+                <p className="mt-2 text-3xl font-bold text-yellow-400 sm:text-4xl">${diyItems.find(i => i.featured)!.price}</p>
               </div>
               <input
                 type="number"
@@ -183,7 +197,7 @@ export default function OrderPage() {
               <div key={item.name} className="flex items-center justify-between gap-4 rounded-xl border border-white/10 px-4 py-3 transition hover:border-green-500/50">
                 <div className="min-w-0">
                   <p className="text-sm font-medium text-white">{item.name}</p>
-                  <p className="text-xs text-yellow-400">{item.price}</p>
+                  <p className="text-xs text-yellow-400">${item.price}</p>
                 </div>
                 <input
                   type="number"
@@ -196,6 +210,42 @@ export default function OrderPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-6">
+            <button
+              type="button"
+              onClick={() => setApplyForMe(!applyForMe)}
+              className={`w-full rounded-2xl border-2 p-5 text-left transition ${
+                applyForMe
+                  ? "border-yellow-400 bg-gradient-to-br from-yellow-400/10 to-yellow-400/5"
+                  : "border-white/10 hover:border-white/30"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-lg font-bold text-white">Apply For Me</p>
+                    <span className="rounded-full bg-green-500 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                      Add-On
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-white/70">
+                    We'll professionally apply your products for you — no work on your end.
+                  </p>
+                  <p className="mt-1 text-2xl font-bold text-yellow-400">$150</p>
+                </div>
+                <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border-2 transition ${
+                  applyForMe ? "border-yellow-400 bg-yellow-400" : "border-white/30"
+                }`}>
+                  {applyForMe && (
+                    <svg className="h-4 w-4 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+            </button>
+          </div>
         </section>
 
         <section className="rounded-3xl border border-mist p-6 sm:p-8">
@@ -207,6 +257,36 @@ export default function OrderPage() {
             placeholder="Any special delivery instructions, preferred dates, gate codes, etc."
           />
         </section>
+
+        {orderTotal > 0 && (
+          <section className="rounded-3xl border-2 border-pine bg-pine/5 p-6 sm:p-8">
+            <h2 className="text-lg font-semibold text-ink">Order Summary</h2>
+            <div className="mt-4 space-y-2">
+              {diyItems.map((item) => {
+                const qty = diyQuantities[item.name] || 0;
+                if (qty === 0) return null;
+                return (
+                  <div key={item.name} className="flex justify-between text-sm">
+                    <span className="text-slate">{item.name} × {qty}</span>
+                    <span className="font-medium text-ink">${item.price * qty}</span>
+                  </div>
+                );
+              })}
+              {applyForMe && (
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate">Apply For Me (Professional Application)</span>
+                  <span className="font-medium text-ink">${APPLICATION_FEE}</span>
+                </div>
+              )}
+              <div className="mt-3 border-t border-mist pt-3">
+                <div className="flex justify-between">
+                  <span className="text-base font-semibold text-ink">Estimated Total</span>
+                  <span className="text-2xl font-bold text-pine">${orderTotal}</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         <div className="text-center">
           <button
