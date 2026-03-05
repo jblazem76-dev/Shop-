@@ -10,14 +10,16 @@ const diyItems = [
   { name: "Full Season Program (all 3 + spray)", price: 296, featured: true }
 ];
 
-const APPLICATION_FEE = 150;
+const FULL_APPLICATION_FEE = 150;
+const SINGLE_APPLICATION_FEE = 50;
 
 export default function OrderPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [diyQuantities, setDiyQuantities] = useState<Record<string, number>>({});
-  const [applyForMe, setApplyForMe] = useState(false);
+  const [applyFull, setApplyFull] = useState(false);
+  const [singleAppCount, setSingleAppCount] = useState(0);
 
   function updateQty(name: string, value: string) {
     const num = parseInt(value) || 0;
@@ -29,7 +31,11 @@ export default function OrderPage() {
     return sum + item.price * qty;
   }, 0);
 
-  const orderTotal = productTotal + (applyForMe ? APPLICATION_FEE : 0);
+  const applicationTotal = applyFull
+    ? FULL_APPLICATION_FEE
+    : singleAppCount * SINGLE_APPLICATION_FEE;
+
+  const orderTotal = productTotal + applicationTotal;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,8 +49,10 @@ export default function OrderPage() {
       .filter((p) => (diyQuantities[p.name] || 0) > 0)
       .map((p) => ({ name: p.name, price: `$${p.price}`, qty: diyQuantities[p.name] }));
 
-    if (applyForMe) {
-      items.push({ name: "Apply For Me (Professional Application)", price: `$${APPLICATION_FEE}`, qty: 1 });
+    if (applyFull) {
+      items.push({ name: "Apply Full Program For Me (up to 12,000 sq ft per application)", price: `$${FULL_APPLICATION_FEE}`, qty: 1 });
+    } else if (singleAppCount > 0) {
+      items.push({ name: "Apply Single Application For Me (up to 12,000 sq ft per application)", price: `$${SINGLE_APPLICATION_FEE}`, qty: singleAppCount });
     }
 
     try {
@@ -84,7 +92,7 @@ export default function OrderPage() {
           pricing and delivery details. You can also reach us at 563-210-1616.
         </p>
         <button
-          onClick={() => { setSubmitted(false); setDiyQuantities({}); setApplyForMe(false); }}
+          onClick={() => { setSubmitted(false); setDiyQuantities({}); setApplyFull(false); setSingleAppCount(0); }}
           className="rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine/90"
         >
           Submit Another Order
@@ -211,12 +219,14 @@ export default function OrderPage() {
             ))}
           </div>
 
-          <div className="mt-6">
+          <div className="mt-8 space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-wide text-white/40">Professional Application Add-Ons</p>
+
             <button
               type="button"
-              onClick={() => setApplyForMe(!applyForMe)}
+              onClick={() => { setApplyFull(!applyFull); if (!applyFull) setSingleAppCount(0); }}
               className={`w-full rounded-2xl border-2 p-5 text-left transition ${
-                applyForMe
+                applyFull
                   ? "border-yellow-400 bg-gradient-to-br from-yellow-400/10 to-yellow-400/5"
                   : "border-white/10 hover:border-white/30"
               }`}
@@ -224,20 +234,20 @@ export default function OrderPage() {
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-lg font-bold text-white">Apply For Me</p>
+                    <p className="text-lg font-bold text-white">Apply Full Program For Me</p>
                     <span className="rounded-full bg-green-500 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
                       Add-On
                     </span>
                   </div>
                   <p className="mt-1 text-sm text-white/70">
-                    We'll professionally apply your products for you — no work on your end.
+                    We'll professionally apply all seasonal products for you — no work on your end.
                   </p>
-                  <p className="mt-1 text-2xl font-bold text-yellow-400">$150</p>
+                  <p className="mt-1 text-2xl font-bold text-yellow-400">$150 <span className="text-sm font-normal text-white/50">up to 12,000 sq ft per application</span></p>
                 </div>
                 <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border-2 transition ${
-                  applyForMe ? "border-yellow-400 bg-yellow-400" : "border-white/30"
+                  applyFull ? "border-yellow-400 bg-yellow-400" : "border-white/30"
                 }`}>
-                  {applyForMe && (
+                  {applyFull && (
                     <svg className="h-4 w-4 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
@@ -245,6 +255,39 @@ export default function OrderPage() {
                 </div>
               </div>
             </button>
+
+            <div className={`rounded-2xl border-2 p-5 transition ${
+              singleAppCount > 0 && !applyFull
+                ? "border-yellow-400 bg-gradient-to-br from-yellow-400/10 to-yellow-400/5"
+                : applyFull
+                  ? "border-white/5 opacity-40"
+                  : "border-white/10"
+            }`}>
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <p className="text-lg font-bold text-white">Apply Single Application For Me</p>
+                    <span className="rounded-full bg-green-500 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                      Add-On
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-white/70">
+                    Just need one season applied? Select how many individual applications you'd like us to handle.
+                  </p>
+                  <p className="mt-1 text-2xl font-bold text-yellow-400">$50<span className="text-sm font-normal text-white/50"> /application · up to 12,000 sq ft per application</span></p>
+                </div>
+                <input
+                  type="number"
+                  min="0"
+                  max="4"
+                  disabled={applyFull}
+                  value={singleAppCount || ""}
+                  onChange={(e) => setSingleAppCount(parseInt(e.target.value) || 0)}
+                  className="w-20 rounded-lg border border-white/20 bg-white/10 px-3 py-3 text-center text-lg font-semibold text-white outline-none transition focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 disabled:opacity-30"
+                  placeholder="0"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -272,10 +315,16 @@ export default function OrderPage() {
                   </div>
                 );
               })}
-              {applyForMe && (
+              {applyFull && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate">Apply For Me (Professional Application)</span>
-                  <span className="font-medium text-ink">${APPLICATION_FEE}</span>
+                  <span className="text-slate">Apply Full Program For Me</span>
+                  <span className="font-medium text-ink">${FULL_APPLICATION_FEE}</span>
+                </div>
+              )}
+              {!applyFull && singleAppCount > 0 && (
+                <div className="flex justify-between text-sm">
+                  <span className="text-slate">Apply Single Application × {singleAppCount}</span>
+                  <span className="font-medium text-ink">${SINGLE_APPLICATION_FEE * singleAppCount}</span>
                 </div>
               )}
               <div className="mt-3 border-t border-mist pt-3">
