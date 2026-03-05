@@ -61,7 +61,7 @@ export default function OrderPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.get("name"),
-          address: data.get("address"),
+          address: `${data.get("address")}, ${data.get("city")}, ${data.get("state")} ${data.get("zip")}`,
           email: data.get("email"),
           phone: data.get("phone"),
           items,
@@ -138,15 +138,50 @@ export default function OrderPage() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="address" className="block text-sm font-medium text-ink">Address</label>
+              <label htmlFor="address" className="block text-sm font-medium text-ink">Street Address</label>
               <input
                 id="address"
                 name="address"
                 type="text"
                 required
                 className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                placeholder="742 Maple Drive, Davenport, IA 52801"
+                placeholder="742 Maple Drive"
               />
+            </div>
+            <div>
+              <label htmlFor="city" className="block text-sm font-medium text-ink">City</label>
+              <input
+                id="city"
+                name="city"
+                type="text"
+                required
+                className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
+                placeholder="Davenport"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="state" className="block text-sm font-medium text-ink">State</label>
+                <input
+                  id="state"
+                  name="state"
+                  type="text"
+                  required
+                  className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
+                  placeholder="IA"
+                />
+              </div>
+              <div>
+                <label htmlFor="zip" className="block text-sm font-medium text-ink">Zip Code</label>
+                <input
+                  id="zip"
+                  name="zip"
+                  type="text"
+                  required
+                  className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
+                  placeholder="52801"
+                />
+              </div>
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-ink">Email</label>
