@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const diyItems = [
   { name: "Spring 28-0-8 (50 lb bag)", price: 89, featured: false },
@@ -20,6 +20,24 @@ export default function OrderPage() {
   const [diyQuantities, setDiyQuantities] = useState<Record<string, number>>({});
   const [applyFull, setApplyFull] = useState(false);
   const [singleAppCount, setSingleAppCount] = useState(0);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  function validateAndScrollToFirst(): boolean {
+    if (!formRef.current) return true;
+    const fields = formRef.current.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input[required], textarea[required]");
+    for (const field of fields) {
+      if (!field.value.trim() || !field.checkValidity()) {
+        field.classList.add("!border-red-400", "!ring-1", "!ring-red-400");
+        field.scrollIntoView({ behavior: "smooth", block: "center" });
+        field.focus({ preventScroll: true });
+        field.addEventListener("input", () => {
+          field.classList.remove("!border-red-400", "!ring-1", "!ring-red-400");
+        }, { once: true });
+        return false;
+      }
+    }
+    return true;
+  }
 
   function updateQty(name: string, value: string) {
     const num = parseInt(value) || 0;
@@ -39,6 +57,7 @@ export default function OrderPage() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!validateAndScrollToFirst()) return;
     setSubmitting(true);
     setError("");
 
@@ -122,12 +141,12 @@ export default function OrderPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-10">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-10" noValidate>
         <section className="rounded-3xl border border-mist p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink">Contact Information</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <label htmlFor="name" className="block text-sm font-medium text-ink">Full Name</label>
+              <label htmlFor="name" className="block text-sm font-medium text-ink">Full Name <span className="text-red-500">*</span></label>
               <input
                 id="name"
                 name="name"
@@ -138,7 +157,7 @@ export default function OrderPage() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label htmlFor="address" className="block text-sm font-medium text-ink">Street Address</label>
+              <label htmlFor="address" className="block text-sm font-medium text-ink">Street Address <span className="text-red-500">*</span></label>
               <input
                 id="address"
                 name="address"
@@ -149,7 +168,7 @@ export default function OrderPage() {
               />
             </div>
             <div>
-              <label htmlFor="city" className="block text-sm font-medium text-ink">City</label>
+              <label htmlFor="city" className="block text-sm font-medium text-ink">City <span className="text-red-500">*</span></label>
               <input
                 id="city"
                 name="city"
@@ -161,7 +180,7 @@ export default function OrderPage() {
             </div>
             <div className="grid grid-cols-2 gap-5">
               <div>
-                <label htmlFor="state" className="block text-sm font-medium text-ink">State</label>
+                <label htmlFor="state" className="block text-sm font-medium text-ink">State <span className="text-red-500">*</span></label>
                 <input
                   id="state"
                   name="state"
@@ -172,7 +191,7 @@ export default function OrderPage() {
                 />
               </div>
               <div>
-                <label htmlFor="zip" className="block text-sm font-medium text-ink">Zip Code</label>
+                <label htmlFor="zip" className="block text-sm font-medium text-ink">Zip Code <span className="text-red-500">*</span></label>
                 <input
                   id="zip"
                   name="zip"
@@ -184,7 +203,7 @@ export default function OrderPage() {
               </div>
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-ink">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium text-ink">Email <span className="text-red-500">*</span></label>
               <input
                 id="email"
                 name="email"
@@ -195,7 +214,7 @@ export default function OrderPage() {
               />
             </div>
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-ink">Phone Number</label>
+              <label htmlFor="phone" className="block text-sm font-medium text-ink">Phone Number <span className="text-red-500">*</span></label>
               <input
                 id="phone"
                 name="phone"
