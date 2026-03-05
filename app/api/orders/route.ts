@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
+import { sendOrderNotification } from "@/lib/gmail";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
@@ -22,7 +23,20 @@ export async function POST(req: NextRequest) {
       [name, address, email, phone, JSON.stringify(safeItems), safeDelivery]
     );
 
-    return NextResponse.json({ success: true, orderId: result.rows[0].id });
+    const orderId = result.rows[0].id;
+
+    try {
+      await sendOrderNotification({
+        name, address, email, phone,
+        items: safeItems,
+        delivery: safeDelivery,
+        orderId
+      });
+    } catch (emailErr) {
+      console.error("Email notification failed (order still saved):", emailErr);
+    }
+
+    return NextResponse.json({ success: true, orderId });
   } catch (err) {
     console.error("Order submission error:", err);
     return NextResponse.json({ error: "Failed to submit order" }, { status: 500 });
