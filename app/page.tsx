@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { CTAButton } from "@/components/CTAButton";
 import { ProductGrid } from "@/components/ProductGrid";
 import { products } from "@/data/products";
+
+export const metadata: Metadata = {
+  title: "Central Turf Agronomy | Science-Led Turf Care Products & Programs",
+  description: "Professional turf care products and seasonal programs built on soil science. Carbon Enhanced Formulations, foliar treatments, and agronomist-designed programs for golf courses, sports turf, and lawn care professionals.",
+  alternates: { canonical: "/" }
+};
 
 const steps = [
   {

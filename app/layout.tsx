@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ctagronomy.com"),
   title: {
     default: "Central Turf Agronomy | Science-Led Turf Care Products & Programs",
     template: "%s | Central Turf Agronomy"
@@ -13,7 +14,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Central Turf Agronomy"
+    siteName: "Central Turf Agronomy",
+    url: "https://www.ctagronomy.com"
+  },
+  alternates: {
+    canonical: "https://www.ctagronomy.com"
   }
 };
 
