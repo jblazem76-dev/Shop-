@@ -1,0 +1,60 @@
+name: Build & Deploy CTAgronomy to Azure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  ACR_NAME: nilproofacr
+  ACR_LOGIN_SERVER: nilproofacr.azurecr.io
+  IMAGE_NAME: ctagronomy-app
+  CONTAINER_APP_NAME: ctagronomy-app
+  RESOURCE_GROUP: nilproof-rg
+
+jobs:
+  build-and-deploy:
+    name: Build, Push & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build and push image via ACR Tasks
+        run: |
+          az acr build \
+            --registry ${{ env.ACR_NAME }} \
+            --image ${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            --image ${{ env.IMAGE_NAME }}:latest \
+            --file Dockerfile \
+            --build-arg DATABASE_URL="${{ secrets.CTA_DATABASE_URL }}" \
+            --build-arg ADMIN_KEY="${{ secrets.CTA_ADMIN_KEY }}" \
+            .
+
+      - name: Deploy to Azure Container Apps
+        run: |
+          az containerapp update \
+            --name ${{ env.CONTAINER_APP_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --image ${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            --set-env-vars \
+              DATABASE_URL="${{ secrets.CTA_DATABASE_URL }}" \
+              ADMIN_KEY="${{ secrets.CTA_ADMIN_KEY }}" \
+              GOOGLE_CLIENT_ID="${{ secrets.CTA_GOOGLE_CLIENT_ID }}" \
+              GOOGLE_CLIENT_SECRET="${{ secrets.CTA_GOOGLE_CLIENT_SECRET }}" \
+              GOOGLE_REFRESH_TOKEN="${{ secrets.CTA_GOOGLE_REFRESH_TOKEN }}"
+
+      - name: Verify deployment
+        run: |
+          echo "Deployed: ${{ env.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          az containerapp show \
+            --name ${{ env.CONTAINER_APP_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query "properties.latestRevisionName" -o tsv
