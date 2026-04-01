@@ -1,19 +1,12 @@
-import { google } from 'googleapis';
+import nodemailer from "nodemailer";
 
-function getGmailClient() {
-  const clientId = process.env.GOOGLE_CLIENT_ID;
-  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
-
-  if (!clientId || !clientSecret || !refreshToken) {
-    throw new Error('Gmail credentials not configured. Set GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and GOOGLE_REFRESH_TOKEN.');
-  }
-
-  const oauth2Client = new google.auth.OAuth2(clientId, clientSecret);
-  oauth2Client.setCredentials({ refresh_token: refreshToken });
-
-  return google.gmail({ version: 'v1', auth: oauth2Client });
-}
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 type OrderItem = {
   name: string;
@@ -32,8 +25,6 @@ type OrderDetails = {
 };
 
 export async function sendOrderNotification(order: OrderDetails) {
-  const gmail = getGmailClient();
-
   const itemLines = order.items
     .map((item) => `  • ${item.name} × ${item.qty} — ${item.price}`)
     .join("\n");
@@ -54,30 +45,13 @@ export async function sendOrderNotification(order: OrderDetails) {
     ``,
     `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
     `This order has been saved to the CTA database.`,
-    `View all orders at your site's /admin page.`
+    `View all orders at your site's /admin page.`,
   ].join("\n");
 
-  const to = "westinmediagroup@gmail.com";
-  const subject = `CTA Order Request #${order.orderId} — ${order.name}`;
-
-  const rawMessage = [
-    `To: ${to}`,
-    `Subject: ${subject}`,
-    `Content-Type: text/plain; charset="UTF-8"`,
-    ``,
-    body
-  ].join("\n");
-
-  const encodedMessage = Buffer.from(rawMessage)
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-
-  await gmail.users.messages.send({
-    userId: "me",
-    requestBody: {
-      raw: encodedMessage
-    }
+  await transporter.sendMail({
+    from: process.env.GMAIL_USER,
+    to: "westinmediagroup@gmail.com",
+    subject: `CTA Order Request #${order.orderId} — ${order.name}`,
+    text: body,
   });
 }
