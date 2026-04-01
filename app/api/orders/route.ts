@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 import { sendOrderNotification } from "@/lib/gmail";
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const pool = new Pool({ connectionString: process.env.DATABASE_URL, family: 4 });
 
 export async function POST(req: NextRequest) {
   try {
