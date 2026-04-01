@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 import { sendOrderNotification } from "@/lib/gmail";
 
+import { setDefaultResultOrder } from "dns";
+setDefaultResultOrder("ipv4first");
+
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 export async function POST(req: NextRequest) {
