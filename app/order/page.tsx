@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
+import { AddressAutocomplete } from "@/components/AddressAutocomplete";
 
 const diyItems = [
   { name: "Spring 28-0-8 (50 lb bag)", price: 89, featured: false },
@@ -20,7 +21,12 @@ export default function OrderPage() {
   const [diyQuantities, setDiyQuantities] = useState<Record<string, number>>({});
   const [applyFull, setApplyFull] = useState(false);
   const [singleAppCount, setSingleAppCount] = useState(0);
+  const [addressFields, setAddressFields] = useState({ address: "", city: "", state: "", zip: "" });
   const formRef = useRef<HTMLFormElement>(null);
+
+  const handleAddressSelect = useCallback((fields: { address: string; city: string; state: string; zip: string }) => {
+    setAddressFields(fields);
+  }, []);
 
   function validateAndScrollToFirst(): boolean {
     if (!formRef.current) return true;
@@ -158,13 +164,17 @@ export default function OrderPage() {
             </div>
             <div className="sm:col-span-2">
               <label htmlFor="address" className="block text-sm font-medium text-ink">Street Address <span className="text-red-500">*</span></label>
-              <input
-                id="address"
-                name="address"
-                type="text"
-                required
-                className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
-                placeholder="742 Maple Drive"
+              <AddressAutocomplete
+                onSelect={handleAddressSelect}
+                inputProps={{
+                  id: "address",
+                  name: "address",
+                  required: true,
+                  value: addressFields.address,
+                  onChange: (e) => setAddressFields((p) => ({ ...p, address: e.target.value })),
+                  className: "mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine",
+                  placeholder: "Start typing your address...",
+                }}
               />
             </div>
             <div>
@@ -174,6 +184,8 @@ export default function OrderPage() {
                 name="city"
                 type="text"
                 required
+                value={addressFields.city}
+                onChange={(e) => setAddressFields((p) => ({ ...p, city: e.target.value }))}
                 className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
                 placeholder="Davenport"
               />
@@ -186,6 +198,8 @@ export default function OrderPage() {
                   name="state"
                   type="text"
                   required
+                  value={addressFields.state}
+                  onChange={(e) => setAddressFields((p) => ({ ...p, state: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
                   placeholder="IA"
                 />
@@ -197,6 +211,8 @@ export default function OrderPage() {
                   name="zip"
                   type="text"
                   required
+                  value={addressFields.zip}
+                  onChange={(e) => setAddressFields((p) => ({ ...p, zip: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-mist bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-pine focus:ring-1 focus:ring-pine"
                   placeholder="52801"
                 />

@@ -36,6 +36,7 @@ jobs:
             --file Dockerfile \
             --build-arg DATABASE_URL="${{ secrets.CTA_DATABASE_URL }}" \
             --build-arg ADMIN_KEY="${{ secrets.CTA_ADMIN_KEY }}" \
+            --build-arg NEXT_PUBLIC_GOOGLE_MAPS_KEY="${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_KEY }}" \
             .
 
       - name: Deploy to Azure Container Apps
